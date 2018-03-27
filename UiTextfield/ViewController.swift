@@ -8,19 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var hello: UILabel!
     @IBOutlet weak var textField: UITextField!
+    //UITextFieldDelegate 객체와 viewController 객체를 연결
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        textField.delegate = self
     }
  
     @IBAction func button(_ sender: Any) {
-        hello.text = "쟌넨~ " + textField.text!
+        hello.text = "보이루~ " + textField.text!
         textField.text = ""
         
         textField.resignFirstResponder()
@@ -35,6 +37,11 @@ class ViewController: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         textField.resignFirstResponder()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //view.backgroundColor = UIColor.red
+        textField.resignFirstResponder()
+        return true
     }
 
 }
